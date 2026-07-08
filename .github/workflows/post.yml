@@ -1,0 +1,31 @@
+name: post-from-queue
+on:
+  schedule:
+    - cron: "23 7,11,17 * * *"   # 3 checks/day UTC; only due items post
+  workflow_dispatch: {}           # manual trigger for testing
+
+permissions:
+  contents: write
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests-oauthlib
+      - run: python post_x.py
+        env:
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          X_API_SECRET: ${{ secrets.X_API_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_SECRET: ${{ secrets.X_ACCESS_SECRET }}
+      - name: commit updated queue
+        run: |
+          git config user.name "from100quid-bot"
+          git config user.email "bot@from100quid"
+          git add queue.json
+          git diff --cached --quiet || git commit -m "mark posted [skip ci]"
+          git push
