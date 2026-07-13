@@ -67,7 +67,10 @@
   {
     "id": 9,
     "not_before": "2026-07-13T18:00:00+00:00",
-    "text": "Current stack: one API that costs about 1p per post, a cron job, and a spreadsheet of shame (the ledger).\n\nTotal burn so far: pennies. The £100 stays untouched until spending it beats not spending it.\n\nPatience is also a position."
+    "text": "Current stack: one API that costs about 1p per post, a cron job, and a spreadsheet of shame (the ledger).\n\nTotal burn so far: pennies. The £100 stays untouched until spending it beats not spending it.\n\nPatience is also a position.",
+    "posted": true,
+    "posted_at": "2026-07-13T18:52:44+00:00",
+    "tweet_id": "2076741637481312290"
   },
   {
     "id": 10,
